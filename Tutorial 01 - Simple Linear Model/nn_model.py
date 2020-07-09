@@ -10,7 +10,7 @@ y = data.var10
 X = data.drop("var10", axis=1)
 
 # build model
-out_layer = tf.keras.layers.Dense(units=1, input_shape=[X.shape[1]])
+out_layer = tf.keras.layers.Dense(units=1)
 model = tf.keras.Sequential([out_layer])
 
 # compile model
@@ -19,6 +19,9 @@ model.compile(loss="mse", optimizer=tf.keras.optimizers.Adam(learning_rate=0.1))
 # fit model
 history = model.fit(X, y, epochs=150, verbose=True)
 
+# plot metric trajectory
 plt.plot(history.history["loss"])
 plt.show()
+
+# show layer values
 print("trained layer:", out_layer.weights)
