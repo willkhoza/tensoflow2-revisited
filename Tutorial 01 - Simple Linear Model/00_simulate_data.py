@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def indepedence(c):
-    if abs(c) <= 0.5:
+    if abs(c) <= 5:
         return 0
     else:
         return c
@@ -23,9 +23,9 @@ def multivariate_linear_model(n, m):
         [type]: [description]
     """
 
-    c = np.random.normal(size=n)
+    c = np.random.uniform(size=n, low=-20, high=20)
     c = list(map(indepedence, c))
-    X = np.random.uniform(size=(m,n))
+    X = np.random.normal(size=(m,n))
     b = np.random.normal(size=m)
     y = X.dot(c)+b
     print("underlying process:", c)
@@ -35,7 +35,7 @@ def multivariate_linear_model(n, m):
 def main():
     n = int(input("insert number of predictors: "))
     m = int(input("insert number of observatios: "))
-    filename = input("insert filename: ")
+    filename = "Tutorial 01 - Simple Linear Model/"+input("insert filename: ")
     print(n, m)
     X, y = multivariate_linear_model(n, m)
     dat = pd.DataFrame(X)
